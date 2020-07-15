@@ -1,24 +1,17 @@
-# notes-app
+# Notes App
 
-## Project setup
-```
-npm install
-```
+**Tier:** 1-Beginner
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Create and store your notes for later purpose!
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## User Stories
 
-### Lints and fixes files
-```
-npm run lint
-```
+-   [ ] User can create a note
+-   [ ] User can edit a note
+-   [ ] User can delete a note
+-   [ ] When closing the browser window the notes will be stored and when the User returns, the data will be retrieved
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Bonus features
+
+-   [ ] User can create and edit a note in Markdown format. On save it will convert Markdown to HTML
+-   [ ] User can see the date when he created the note
