@@ -1,5 +1,17 @@
 <template>
   <div class="home">
+    <div class="empty uk-text-center uk-text-lead" v-if="notes.length === 0">
+      No notes added
+    </div>
+    <div class="uk-child-width-1-2@s uk-grid-match uk-grid-medium" uk-grid v-else>
+      <div v-for="note in notes" :key="note.id">
+        <div class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light">
+          <span class="uk-margin-small-right delete" uk-icon="close"></span>
+          <h3 class="uk-card-title uk-margin-small">{{note.name}}</h3>
+          <p>{{note.body}}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -7,5 +19,27 @@
 
 export default {
   name: 'Home',
+  data: () => ({
+    notes: [],
+  }),
+  mounted() {
+    if (localStorage.getItem('notes') === null) {
+      localStorage.setItem('notes', JSON.stringify([]));
+    } else {
+      this.notes = JSON.parse(localStorage.getItem('notes'));
+    }
+  },
 };
 </script>
+
+<style scoped>
+.delete {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.delete:hover {
+  cursor: pointer;
+}
+</style>
