@@ -6,7 +6,7 @@
     <div class="uk-child-width-1-2@s uk-grid-match uk-grid-medium" uk-grid v-else>
       <div v-for="note in notes" :key="note.id">
         <div class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light">
-          <span class="uk-margin-small-right delete" uk-icon="close"></span>
+          <span class="uk-margin-small-right delete" uk-icon="close" @click="deleteNote(note.id)"></span>
           <h3 class="uk-card-title uk-margin-small">{{note.name}}</h3>
           <p>{{note.body}}</p>
         </div>
@@ -28,6 +28,18 @@ export default {
     } else {
       this.notes = JSON.parse(localStorage.getItem('notes'));
     }
+  },
+  methods: {
+    deleteNote(noteId) {
+      const newNotesArray = [];
+      this.notes.forEach((note) => {
+        if (note.id !== noteId) {
+          newNotesArray.push(note);
+        }
+      });
+      localStorage.setItem('notes', JSON.stringify(newNotesArray));
+      this.notes = newNotesArray;
+    },
   },
 };
 </script>
