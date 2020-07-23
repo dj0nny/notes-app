@@ -7,8 +7,9 @@
       <div v-for="note in notes" :key="note.id">
         <div class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light">
           <span class="uk-margin-small-right delete" uk-icon="close" @click="deleteNote(note.id)"></span>
+          <router-link :to="{name: 'EditNote', params: { id: note.id } }"><span class="uk-margin-small-right edit" uk-icon="pencil"></span></router-link>
           <h3 class="uk-card-title uk-margin-small">{{note.name}}</h3>
-          <p>{{note.body}}</p>
+          <p v-html="renderMarkdown(note.body)"></p>
         </div>
       </div>
     </div>
@@ -16,11 +17,14 @@
 </template>
 
 <script>
+import marked from 'marked';
+import DOMPurify from 'dompurify';
 
 export default {
   name: 'Home',
   data: () => ({
     notes: [],
+    currentNote: {},
   }),
   mounted() {
     if (localStorage.getItem('notes') === null) {
@@ -40,18 +44,27 @@ export default {
       localStorage.setItem('notes', JSON.stringify(newNotesArray));
       this.notes = newNotesArray;
     },
+    renderMarkdown(noteBody) {
+      return DOMPurify.sanitize(marked(noteBody));
+    },
   },
 };
 </script>
 
 <style scoped>
-.delete {
+.delete,
+.edit {
   position: absolute;
   top: 15px;
   right: 20px;
 }
 
-.delete:hover {
+.edit {
+  right: 50px;
+}
+
+.delete:hover,
+.edit:hover {
   cursor: pointer;
 }
 </style>
