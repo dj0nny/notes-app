@@ -33,7 +33,9 @@ export default {
   methods: {
     addNote() {
       this.note.id = uuidv4();
+      this.note.created_at = new Date();
       const notes = JSON.parse(localStorage.getItem('notes'));
+      console.log(this.note);
       notes.push(this.note);
       localStorage.setItem('notes', JSON.stringify(notes));
       this.note.name = '';

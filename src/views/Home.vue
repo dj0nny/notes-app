@@ -8,6 +8,7 @@
         <div class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light">
           <span class="uk-margin-small-right delete" uk-icon="close" @click="deleteNote(note.id)"></span>
           <router-link :to="{name: 'EditNote', params: { id: note.id } }"><span class="uk-margin-small-right edit" uk-icon="pencil"></span></router-link>
+          <span v-if="note.created_at">{{note.created_at.toString()}}</span>
           <h3 class="uk-card-title uk-margin-small">{{note.name}}</h3>
           <p v-html="renderMarkdown(note.body)"></p>
         </div>
