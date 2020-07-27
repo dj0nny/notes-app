@@ -1,5 +1,10 @@
 # Notes App
 
+Idea from [here](https://github.com/florinpop17/app-ideas)
+
+Demo: [Netlify](https://festive-shannon-c0cf33.netlify.app/#/)
+
+
 **Tier:** 1-Beginner
 
 Create and store your notes for later purpose!
@@ -14,4 +19,4 @@ Create and store your notes for later purpose!
 ## Bonus features
 
 -   [x] User can create and edit a note in Markdown format. On save it will convert Markdown to HTML
--   [ ] User can see the date when he created the note
+-   [x] User can see the date when he created the note
